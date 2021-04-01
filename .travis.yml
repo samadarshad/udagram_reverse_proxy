@@ -13,7 +13,6 @@ before_script:
 
 script:
   - docker --version # print the version for logging
-  - echo "username is: $DOCKER_USERNAME"
   - docker build -t $DOCKER_USERNAME/$PROJECT_NAME:${TRAVIS_COMMIT::8} .
 
 after_success:
