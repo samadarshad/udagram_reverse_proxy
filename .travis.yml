@@ -13,7 +13,7 @@ before_script:
 
 script:
   - docker --version # print the version for logging
-  - docker build -t $PROJECT_NAME .
+  - docker build -t samadarshad/$PROJECT_NAME:$TRAVIS_COMMIT .
 
 after_success:
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
