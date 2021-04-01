@@ -18,4 +18,4 @@ script:
 
 after_success:
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-  - docker push samadarshad/$PROJECT_NAME
+  - docker push samadarshad/$PROJECT_NAME:${TRAVIS_COMMIT::8}
