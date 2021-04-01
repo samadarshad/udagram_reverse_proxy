@@ -13,10 +13,9 @@ before_script:
 
 script:
   - docker --version # print the version for logging
-  - docker build -t samadarshad/$PROJECT_NAME:${TRAVIS_COMMIT::8} .
-  - docker images
+  - echo "username is: $DOCKER_USERNAME"
+  - docker build -t $DOCKER_USERNAME/$PROJECT_NAME:${TRAVIS_COMMIT::8} .
 
 after_success:
-  - docker images
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-  - docker push samadarshad/$PROJECT_NAME:${TRAVIS_COMMIT::8}
+  - docker push $DOCKER_USERNAME/$PROJECT_NAME:${TRAVIS_COMMIT::8}
