@@ -13,9 +13,10 @@ before_script:
 
 script:
   - docker --version # print the version for logging
-  - docker build -t "samadarshad/${PROJECT_NAME}:${TRAVIS_COMMIT}" .
+  - docker build -t ${PROJECT_NAME} .
+  - docker tag ${PROJECT_NAME} samadarshad/${PROJECT_NAME}:${TRAVIS_COMMIT::8}
 
 after_success:
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-  - echo "pushing to samadarshad/${PROJECT_NAME}:${TRAVIS_COMMIT}"
-  - docker push "samadarshad/${PROJECT_NAME}:${TRAVIS_COMMIT}"
+  - echo "pushing to samadarshad/${PROJECT_NAME}:${TRAVIS_COMMIT::8}"
+  - docker push samadarshad/${PROJECT_NAME}:${TRAVIS_COMMIT::8}
